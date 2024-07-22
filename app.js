@@ -1,3 +1,4 @@
+
 window.addEventListener('scroll', function() {
     const tabsContainer = document.querySelector('.navbar');
     if (window.scrollY > window.innerHeight) {
@@ -6,3 +7,5 @@ window.addEventListener('scroll', function() {
         tabsContainer.classList.remove('et-hero-tabs-container--top');
     }
 });
+
+// Initialization for ES Users
