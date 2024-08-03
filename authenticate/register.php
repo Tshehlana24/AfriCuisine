@@ -25,6 +25,20 @@ if (isset($_POST['register'])) {
         die('Connection failed: ' . $conn->connect_error);
     }
 
+        // Check for existing email
+        $emailCheckQuery = $conn->prepare("SELECT * FROM users WHERE Email = ?");
+        $emailCheckQuery->bind_param("s", $email);
+        $emailCheckQuery->execute();
+        $result = $emailCheckQuery->get_result();
+    
+        if ($result->num_rows > 0) {?>
+            <script>
+                    alert("User with email already exist!");
+                    window.location.href = "../login.html";
+                </script><?php
+           
+        } else {
+
     // Insert user into database
     $sql = "INSERT INTO users (Name, Surname, Email, password, token) VALUES ('$name', '$surname', '$email', '$password', '$token')";
 
@@ -49,8 +63,8 @@ if (isset($_POST['register'])) {
 
             // Content
             $mail->isHTML(true);
-            $mail->Subject = 'Email Verification';
-            $mail->Body    = "Please click the link below to verify your email address:<br><a href='verify.php?token=$token'>Verify Email</a>";
+            $mail->Subject = 'AfriCuisine Email Verification';
+            $mail->Body    = "Please click the link below to verify your email address:<br><a href='http://localhost/php/AfriCuisine/authenticate/verify.php?token=$token'>Verify Email</a>";
 
             $mail->send();
             echo 'A verification email has been sent to your email address.';
@@ -62,5 +76,5 @@ if (isset($_POST['register'])) {
     }
 
     $conn->close();
-}
+}}
 

@@ -15,7 +15,7 @@ if (isset($_GET['token'])) {
 
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
-        $update = "UPDATE users SET is_verified=1, token=NULL WHERE id=" . $user['user_id'];
+        $update = "UPDATE users SET is_verified=1, token=NULL WHERE user_id=" . $user['user_id'];
         if ($conn->query($update) === TRUE) {
             echo "Your email has been verified.";
         } else {
