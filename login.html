@@ -33,11 +33,11 @@
           <form action="authenticate/" method="post">
           <div class="group">
             <label for="user" class="label">Email</label>
-            <input id="user" name="email" type="email" class="input">
+            <input id="user" name="email" type="email" class="input" required>
           </div>
           <div class="group password-wrapper">
             <label for="pass" class="label">Password</label>
-            <input id="pass" name="password" type="password" autocomplete="off" class="input" >
+            <input id="pass" name="password" type="password" autocomplete="off" class="input" required>
             <span class="toggle-password" toggle="#pass"><i class="fas fa-eye"></i></span>
           </div>
           <div class="group">
@@ -57,25 +57,25 @@
           <form action="authenticate/register.php" method="post">
           <div class="group">
             <label for="user" class="label">Name</label>
-            <input id="user" name="name" type="text" class="input">
+            <input id="user" name="name" type="text" class="input" required>
           </div>
           <div class="group">
             <label for="users" class="label">Surname</label>
-            <input id="users" name="surname" type="text" class="input">
+            <input id="users" name="surname" type="text" class="input" required>
           </div>
           <div class="group">
             <label for="email" class="label">Email Address</label>
-            <input id="email" name="email" type="email" class="input">
+            <input id="email" name="email" type="email" class="input" required>
           </div>
           <div class="group password-wrapper">
             <label for="register-pass" class="label">Password</label>
-            <input id="register-pass" name="Password" type="password" class="input" >
+            <input id="register-pass" name="Password" type="password" class="input" required>
             <span class="toggle-password" toggle="#register-pass"><i class="fas fa-eye"></i></span>
             <div id="confirm"> <span></span></div>
           </div>
           <div class="group password-wrapper">
             <label for="confirm-pass" class="label">Repeat Password</label>
-            <input id="confirm-pass" name="ConfirmPassword" type="password" class="input" >
+            <input id="confirm-pass" name="ConfirmPassword" type="password" class="input" required>
             <span class="toggle-password" toggle="#confirm-pass"><i class="fas fa-eye"></i></span>
           </div>
           <div class="group">
