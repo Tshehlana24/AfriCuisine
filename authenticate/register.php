@@ -15,11 +15,11 @@ if (isset($_POST['register'])) {
     $name = $_POST['name'];
     $surname = $_POST['surname'];
     $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+    $password = password_hash($_POST['Password'], PASSWORD_BCRYPT);
     $token = bin2hex(random_bytes(50)); // Generate a random token
 
     // Database connection
-    $conn = new mysqli('localhost', 'me', 'Greater@00', 'africuisine_db');
+    $conn =  mysqli_connect('db', 'my_user', 'my_password', 'africuisine_db');
 
     if ($conn->connect_error) {
         die('Connection failed: ' . $conn->connect_error);
