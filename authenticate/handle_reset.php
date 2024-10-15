@@ -14,7 +14,7 @@ if (isset($_POST['email'])) {
     $expiry = date('Y-m-d H:i:s', strtotime('+1 hour')); // Token expires in 1 hour
 
     // Database connection
-    $conn = new mysqli('localhost', 'me', 'Greater@00', 'africuisine_db');
+    $conn =  mysqli_connect('db', 'my_user', 'my_password', 'africuisine_db');
 
     if ($conn->connect_error) {
         die('Connection failed: ' . $conn->connect_error);

@@ -3,8 +3,7 @@ if (isset($_GET['token'])) {
     $token = $_GET['token'];
 
     // Database connection
-    $conn = new mysqli('localhost', 'me', 'Greater@00', 'africuisine_db');
-
+    $conn =  mysqli_connect('db', 'my_user', 'my_password', 'africuisine_db');
     if ($conn->connect_error) {
         die('Connection failed: ' . $conn->connect_error);
     }
