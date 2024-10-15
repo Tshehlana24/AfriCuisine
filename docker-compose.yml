@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  php:
+    image: php:8.0-apache
+    container_name: php-container
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: my_database
+      MYSQL_USER: my_user
+      MYSQL_PASSWORD: my_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin-container
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "8001:80"
+    depends_on:
+      - db
+
+volumes:
+  db_data:
