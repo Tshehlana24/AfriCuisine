@@ -30,7 +30,7 @@
       <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
       <div class="login-form">
         <div class="sign-in-htm">
-          <form action="authenticate/" method="post">
+          <form action="signin.php" method="post">
           <div class="group">
             <label for="user" class="label">Email</label>
             <input id="user" name="email" type="email" class="input" required>
@@ -45,16 +45,16 @@
             <label for="check"><span class="icon"></span> Keep me Signed in</label>
           </div>
           <div class="group">
-            <input type="submit" class="button" value="Sign In">
+            <input type="submit" class="button" value="login" id= "login" name="login">
           </div>
           </form>
           <div class="hr"></div>
           <div class="foot-lnk">
-            <a href="authenticate/reset_request.php">Forgot Password?</a>
+            <a href="reset_request.php">Forgot Password?</a>
           </div>
         </div>
         <div class="sign-up-htm">
-          <form action="authenticate/register.php" method="post">
+          <form action="register.php" method="post">
           <div class="group">
             <label for="user" class="label">Name</label>
             <input id="user" name="name" type="text" class="input" required>

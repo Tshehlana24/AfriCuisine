@@ -1,3 +1,7 @@
+<?php
+session_start();
+echo $_SESSION['user_id'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +26,15 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                   <ul class="navbar-nav ms-auto">
+
+                  <?php
+
+                    if (isset($_SESSION['user_id']) && $_SESSION['user_id'] !== '') {
+                      echo  '<li class="nav-link" style="color: white;">Hi, '.$_SESSION['name'].'!</li>';
+                    }
+                  ?>
                     <li class="nav-item">
+
                       <a class="nav-link " aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item dropdown">
@@ -51,9 +63,14 @@
                     <li class="nav-item">
                       <a class="nav-link " href="#">About Us</a>
                     </li>
-                    <li class="nav-item">
-                      <a class="nav-link " href="login.html">Log in</a>
-                    </li>
+                    <?php 
+                    if (isset($_SESSION['user_id']) && $_SESSION['user_id'] !== '') {
+                      echo '<li class="nav-item"> <a class="nav-link " href="authenticate/index.php">Log Out</a></li>';
+                    }else{
+                     echo '<li class="nav-item"> <a class="nav-link " href="authenticate/login.html">Log In</a></li>';
+                    }
+                    ?>
+                    
                   </ul>
                 </div>
               </div>

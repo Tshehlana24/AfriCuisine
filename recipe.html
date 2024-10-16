@@ -93,12 +93,33 @@
                   <label for="dish-name">Dish Name:</label>
                   <input type="text" id="dish-name" name="dish-name" required>
                 </div>
-        
-                <!-- Cuisine Origin -->
-                <div class="form-field">
-                  <label for="cuisine-origin">Cuisine Origin:</label>
-                  <input type="text" id="cuisine-origin" name="cuisine-origin" required>
-                </div>
+
+
+        <!-- Cuisine Origin -->
+        <div class="form-field">
+         <label for="cuisine-origin">Cuisine Origin:</label>
+                <select name="cuisine-origin" id="cuisine-origin" required>
+                  <option value="" selected disabled>Choose an option</option>
+                  <option value="South Africa">South Africa</option>
+                  <option value="Nigeria">Nigeria</option>
+                  <option value="Ghana">Ghana</option>
+                  <option value="Egypt">Egypt</option>
+                </select>
+            </div>    
+                <!-- Type of dish -->
+            <div class="form-field">
+              <label for="dish-type">Type of Dish:</label>
+                     <select name="dish-type" id="dish-type" required>
+                       <option value="" selected disabled>Choose an option</option>
+                       <option value="Breakfast">Breakfast</option>
+                       <option value="Lunch">Lunch</option>
+                       <option value="Dinner">Dinner</option>
+                       <option value="Dessert">Dessert</option>
+                       <option value="Snacks">Snacks</option>
+
+                     </select>
+                 </div> 
+                
         
                 <!-- Picture -->
                 <div class="form-field">
