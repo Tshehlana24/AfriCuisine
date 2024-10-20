@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -87,7 +88,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-           <form method="post" action="addRecipe.handle.php">
+           <form method="post" action="addRecipe.handle.php" enctype="multipart/form-data">
                 <!-- Dish Name -->
                 <div class="form-field">
                   <label for="dish-name">Dish Name:</label>
@@ -125,12 +126,14 @@
                 <div class="form-field">
                   <label for="picture">Main Picture:</label>
                   <input type="file" id="picture" name="picture" accept="image/*" required>
+                  <span id="file-name" style= "color: black; text-align: left"></span>
                 </div>
         
                 <!-- Other Pictures -->
                 <div class="form-field">
                   <label for="other-pictures">Other Pictures:</label>
-                  <input type="file" id="other-pictures" name="other-pictures[]" accept="image/*" multiple>
+                  <input type="file" id="other-pictures" name="other-pictures[]" accept="image/*" multiple required>
+                  <span id="file-names" style= "color: black; text-align: left"></span>
                 </div>
         
                 <!-- Prep Time -->
@@ -156,7 +159,7 @@
                 </div>
         
                 <!-- Submit Button -->
-                <button type="submit" class="submit-button" name="add-recipe">Submit</button>
+                <button type="submit" class="submit-button" value="Submit" name="add-recipe">Submit</button>
               </form>
         </div>
         <div class="modal-footer">
@@ -224,6 +227,59 @@
                         </div>
                     </div>
                 </div>
+
+                <?php
+// Database connection
+$conn = mysqli_connect('db', 'my_user', 'my_password', 'africuisine_db');
+
+if (!$conn) {
+    die('Connection failed: ' . mysqli_connect_error());
+}
+
+// Fetch all dishes
+$sql = "SELECT DishName, CuisineOrigin, DishPicture, Description, PrepTime FROM dishes";
+$result = $conn->query($sql);
+
+// Check if any results are returned
+if ($result->num_rows > 0) {
+    // Loop through each dish and display as a card
+    while ($row = $result->fetch_assoc()) {
+        // Assign variables from database row
+        $dishName = $row['DishName'];
+        $cuisineOrigin = $row['CuisineOrigin'];
+        $dishPicture = $row['DishPicture']; // Assuming the image path is stored
+        $description = substr($row['Description'], 0, 100); // Limit description length
+        $totalTime = $row['PrepTime'];
+
+         // Convert BLOB data to base64 encoding for the image
+         $imageData = base64_encode($dishPicture);
+         $imageSrc = 'data:image/jpeg;base64,' . $imageData;
+
+        // Display the card for each recipe
+        echo "
+        <div class='col'>
+            <div class='card h-100 shadow'>
+                <img src='{$imageSrc}' class='card-img-top' alt='{$dishName}'>
+                <span class='recipe-category'>{$cuisineOrigin}</span>
+                <div class='card-body'>
+                    <h5 class='card-title'>{$dishName}</h5>
+                    <p class='card-text'>{$description}</p>
+                    <p class='recipe-time'><i class='bi bi-clock'></i> {$totalTime}</p>
+                </div>
+                <div class='card-footer bg-transparent border-top-0'>
+                    <a href='#' class='btn btn-primary'>View Recipe</a>
+                </div>
+            </div>
+        </div>";
+    }
+} else {
+    echo "No recipes found!";
+}
+
+// Close the connection
+$conn->close();
+?>
+
             </div>
         </div>
     </section>
@@ -232,19 +288,20 @@
 
     <script>
        // Get the file input element
- const fileInput = document.querySelector('#other-pictures');
+       document.getElementById('picture').addEventListener('change', function() {
+    var fileName = this.value.split('\\').pop();
+    document.getElementById('file-name').innerHTML = fileName;
+  });
 
-// Get the input field to display the selected file names
-const selectedPicturesInput = document.querySelector('#selected-pictures');
 
-// Add event listener to the file input element
-fileInput.addEventListener('change', function() {
-  // Get the selected file names
-  const fileNames = Array.from(fileInput.files).map(file => file.name);
-
-  // Join the file names into a string and display them in the input field
-  selectedPicturesInput.value = fileNames.join(', ');
-});
+  // Get the file input element for multiple files
+  document.getElementById('other-pictures').addEventListener('change', function() {
+    var fileNames = [];
+    for (var i = 0; i < this.files.length; i++) {
+      fileNames.push(this.files[i].name);
+    }
+    document.getElementById('file-names').innerHTML = fileNames.join(', ');
+  });
     </script>
 
 </body>

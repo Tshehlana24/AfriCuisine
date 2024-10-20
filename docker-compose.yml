@@ -2,10 +2,14 @@ version: '3.8'
 
 services:
   php:
+    
     build:
       context: .
       dockerfile: Dockerfile
     container_name: php-container
+    environment:
+      - PHP_POST_MAX_SIZE=30M
+      - PHP_UPLOAD_MAX_FILESIZE=30M
     volumes:
       - ./:/var/www/html
     ports:
