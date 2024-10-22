@@ -232,6 +232,7 @@ main{
  
 }
 
+
 .recipe{
     margin-top: 4rem;
     display: grid;
@@ -283,4 +284,99 @@ main{
     
 }
 
+
+/* STYLING FOR THE RATING */
+
+/* General styling for the form */
+.rating-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Styling the label and select */
+.rate-label {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.rate-select {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    margin-bottom: 1.5rem;
+    color: #555;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.rate-select:focus {
+    border-color: #fbb206;
+}
+
+/* Comment box styling */
+.comment-box {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    margin-bottom: 1.5rem;
+    color: #555;
+    resize: none;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.comment-box:focus {
+    border-color: #fbb206;
+}
+
+/* Submit button styling */
+.submit-rate {
+    background-color: #fbb206;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submit-rate:hover {
+    background-color: #f59d06;
+    transform: scale(1.05);
+}
+
+/* Flexbox for alignment */
+.ratingsend {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .rating-form {
+        padding: 1rem;
+        margin: 1rem;
+    }
+
+    .submit-rate {
+        width: 100%;
+        font-size: 1rem;
+    }
+}
 

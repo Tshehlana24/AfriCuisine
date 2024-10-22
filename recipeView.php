@@ -133,11 +133,50 @@ echo "
         <p>{$instructions}</p>
 
   </div> 
+";?>
+  <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Toggle bottom offcanvas</button>
+
+<div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasBottomLabel">Comment Section</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body small">
+
+  <form action="rate.php" method="post" class="rating-form">
+    <div class="ratingsend">
+        <div class="rate">
+            <label for="rate" class="rate-label">Rate This Recipe</label>
+            <select name="rating" id="rate" class="rate-select">
+                <option value="" selected disabled>Choose a rating</option>
+                <option value="1">1 - Bad</option>
+                <option value="2">2 - Meh</option>
+                <option value="3">3 - Good</option>
+                <option value="4">4 - Tasty</option>
+                <option value="5">5 - Awesome</option>
+            </select>
+        </div>
+
+        <textarea id="comment" name="comment" placeholder="Leave a comment..." rows="4" class="comment-box"></textarea>
+
+        <input type="submit" value="Submit Rating" name="Rate" class="submit-rate">
+    </div>
+</form>
+
+
+<hr>
+  </div>
+</div>
+
+
+
 
   </div>
+
+  
  </div>
 
-";?>
+
 
    </div>
     
