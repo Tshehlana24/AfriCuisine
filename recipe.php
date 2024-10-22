@@ -136,53 +136,7 @@
         <div class="container my-5">
             <h1 class="text-center mb-5">Delicious Recipes</h1>
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                <!-- Recipe Card 1 -->
-                <div class="col">
-                    <div class="card h-100 shadow">
-                        <img src="/placeholder.svg?height=200&width=300" class="card-img-top" alt="Spaghetti Carbonara">
-                        <span class="recipe-category">Italian</span>
-                        <div class="card-body">
-                            <h5 class="card-title">Spaghetti Carbonara</h5>
-                            <p class="card-text">A classic Roman pasta dish with eggs, cheese, and pancetta.</p>
-                            <p class="recipe-time"><i class="bi bi-clock"></i> 30 minutes</p>
-                        </div>
-                        <div class="card-footer bg-transparent border-top-0">
-                            <a href="#" class="btn btn-primary">View Recipe</a>
-                        </div>
-                    </div>
-                </div>
-    
-                <!-- Recipe Card 2 -->
-                <div class="col">
-                    <div class="card h-100 shadow">
-                        <img src="/placeholder.svg?height=200&width=300" class="card-img-top" alt="Chicken Stir Fry">
-                        <span class="recipe-category">Asian</span>
-                        <div class="card-body">
-                            <h5 class="card-title">Chicken Stir Fry</h5>
-                            <p class="card-text">A quick and easy stir fry with chicken and colorful vegetables.</p>
-                            <p class="recipe-time"><i class="bi bi-clock"></i> 25 minutes</p>
-                        </div>
-                        <div class="card-footer bg-transparent border-top-0">
-                            <a href="#" class="btn btn-primary">View Recipe</a>
-                        </div>
-                    </div>
-                </div>
-    
-                <!-- Recipe Card 3 -->
-                <div class="col">
-                    <div class="card h-100 shadow">
-                        <img src="/placeholder.svg?height=200&width=300" class="card-img-top" alt="Vegetarian Quinoa Bowl">
-                        <span class="recipe-category">Vegetarian</span>
-                        <div class="card-body">
-                            <h5 class="card-title">Vegetarian Quinoa Bowl</h5>
-                            <p class="card-text">A nutritious and colorful quinoa bowl packed with veggies.</p>
-                            <p class="recipe-time"><i class="bi bi-clock"></i> 20 minutes</p>
-                        </div>
-                        <div class="card-footer bg-transparent border-top-0">
-                            <a href="#" class="btn btn-primary">View Recipe</a>
-                        </div>
-                    </div>
-                </div>
+       
 
                 <?php
 // Database connection
@@ -193,7 +147,7 @@ if (!$conn) {
 }
 
 // Fetch all dishes
-$sql = "SELECT DishName, CuisineOrigin, DishPicture, Description, PrepTime FROM dishes";
+$sql = "SELECT dish_id, DishName, CuisineOrigin, DishPicture, Description, PrepTime FROM dishes";
 $result = $conn->query($sql);
 
 // Check if any results are returned
@@ -201,6 +155,7 @@ if ($result->num_rows > 0) {
     // Loop through each dish and display as a card
     while ($row = $result->fetch_assoc()) {
         // Assign variables from database row
+        $dishId = $row['dish_id'];
         $dishName = $row['DishName'];
         $cuisineOrigin = $row['CuisineOrigin'];
         $dishPicture = $row['DishPicture']; // Assuming the image path is stored
@@ -214,6 +169,7 @@ if ($result->num_rows > 0) {
         // Display the card for each recipe
         echo "
         <div class='col'>
+        <a href='recipeView.php?id={$dishId}'>
             <div class='card h-100 shadow'>
                 <img src='{$imageSrc}' class='card-img-top' alt='{$dishName}'>
                 <span class='recipe-category'>{$cuisineOrigin}</span>
@@ -226,7 +182,9 @@ if ($result->num_rows > 0) {
                     <a href='#' class='btn btn-primary'>View Recipe</a>
                 </div>
             </div>
-        </div>";
+        </div>
+        </a>";
+       
     }
 } else {
     echo "No recipes found!";

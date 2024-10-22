@@ -210,3 +210,77 @@ main{
     font-size: 0.9rem;
     color: #6c757d;
 }
+
+
+/* STYLING FOR THE RECIPES VIEW */
+.container-view{
+
+    background-color: rgb(144, 179, 29);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 2rem;
+    border-radius: 10px;
+ 
+}
+
+.recipe{
+    margin-top: 4rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
+   
+    margin-bottom: 4rem;
+}
+
+ .container{
+    display: flex;
+    flex-direction: row;
+}
+
+.TimeandOrigin{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 2fr));
+    justify-self: unset;
+    align-self: unset;
+}
+
+.rating, .username, .time, .origin{
+    margin: auto 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.rating p, .username p, .time p, .origin p{
+    margin: auto 0;
+}
+.recipeMeta{
+    text-align: left;
+    margin-left: 1rem;
+}
+
+@media (max-width: 768px) {
+    .mainPicture img {
+        width: 80%; /* Adjust this as needed */
+    }
+}
+
+
+@media screen and (max-width: 500px) {
+    .TimeandOrigin{
+        display: grid;
+        grid-template-columns: repeat(1, auto);
+  }  
+    
+}
+
+
