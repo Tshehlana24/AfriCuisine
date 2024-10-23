@@ -136,9 +136,8 @@
         <div class="container my-5">
             <h1 class="text-center mb-5">Delicious Recipes</h1>
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-       
 
-                <?php
+            <?php
 // Database connection
 $conn = mysqli_connect('db', 'my_user', 'my_password', 'africuisine_db');
 
@@ -182,8 +181,9 @@ if ($result->num_rows > 0) {
                     <a href='#' class='btn btn-primary'>View Recipe</a>
                 </div>
             </div>
+            </a>
         </div>
-        </a>";
+        ";
        
     }
 } else {
@@ -194,7 +194,10 @@ if ($result->num_rows > 0) {
 $conn->close();
 ?>
 
+            
+
             </div>
+            
         </div>
     </section>
     </main>
