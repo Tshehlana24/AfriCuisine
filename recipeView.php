@@ -44,6 +44,19 @@ if (isset($_GET['id'])) {
 
 
  
+$ratingprompt = "SELECT  users.Name, users.Surname, ratings.rating, ratings.comment, ratings.date_created
+ FROM users
+ Join ratings on ratings.user_id = users.user_id 
+ WHERE ratings.recipe_id = ?";
+
+
+$stmt = $conn->prepare($ratingprompt);
+$stmt->bind_param("s", $recipeId);
+$stmt->execute();
+$ratings = $stmt->get_result();
+
+
+
 
 
 
@@ -58,11 +71,13 @@ if (isset($_GET['id'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styling.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="view.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css" referrerpolicy="no-referrer" />
+    
     <title><?php echo $dishName; ?></title>
 </head>
 <body>
@@ -132,10 +147,14 @@ echo "
         <p>{$instructions}</p>
         <p>{$instructions}</p>
 
+        
+
   </div> 
 ";
+
+
 $stmt->close(); ?>
-  <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Toggle bottom offcanvas</button>
+  <button class="btn btn-warning" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Leave a Comment</button>
 
 <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
   <div class="offcanvas-header">
@@ -169,6 +188,61 @@ $stmt->close(); ?>
 
 
 <hr>
+
+<div class="name"><?php  
+                if ($ratings->num_rows > 0) {
+                    while ($row2 = $ratings->fetch_assoc()) {
+                        echo"<div class= 'reviewHead'><div class='reviewName'>{$row2['Name']} {$row2['Surname'] }</div><div class='reviewDate'>{$row2['date_created']}</div></div>";
+                         
+                         switch($row2['rating'] ){
+                          case 1:  echo "<p class='star'>
+                            <span class='fa fa-star' style='color: gold;'></span>
+                            <span class='fa fa-star'></span>
+                            <span class='fa fa-star'></span>
+                            <span class='fa fa-star'></span>
+                            <span class='fa fa-star'></span></p>";
+                            break;
+                         case 2:  echo "<p class='star'>
+                            <span class='fa fa-star' style='color: gold;'></span>
+                            <span class='fa fa-star' style='color: gold;'></span>
+                            <span class='fa fa-star'></span>
+                            <span class='fa fa-star'></span>
+                            <span class='fa fa-star'></span></p>";
+                            break;
+
+                        case 3:  echo "<p class='star'>
+                        <span class='fa fa-star' style='color: gold; '></span>
+                            <span class='fa fa-star' style='color: gold;'></span>
+                            <span class='fa fa-star' style='color: gold;'></span>
+                            <span class='fa fa-star'></span>
+                            <span class='fa fa-star'></span></p> ";
+                            break;
+
+                        case 4:  echo "<p class='star'>
+                        <span class='fa fa-star' style='color: gold; '></span>
+                            <span class='fa fa-star' style='color: gold;'></span>
+                            <span class='fa fa-star' style='color: gold;'></span>
+                            <span class='fa fa-star' style='color: gold;'></span>
+                            <span class='fa fa-star'></span></p> ";
+                            break;
+
+                        case 5:  echo "<p class='star'>
+                        <span class='fa fa-star'  style='color: gold;'></span>
+                            <span class='fa fa-star' style='color: gold;'></span>
+                            <span class='fa fa-star' style='color: gold;'></span>
+                            <span class='fa fa-star' style='color: gold;'></span>
+                            <span class='fa fa-star' style='color: gold;'></span></p> ";
+                            break;
+                     
+                        };
+                         echo "<p id = 'text'>{$row2['comment'] }</p> ";
+                        echo "<hr>";
+                    }
+                } else {
+                    echo "No reviews yet.";
+                }
+                ?>
+            </div>
   </div>
 </div>
 

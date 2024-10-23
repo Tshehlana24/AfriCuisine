@@ -55,9 +55,7 @@ if (isset($_POST['Rate'])) {
               </script>";
     }
 
-    // Close statement and connection
-    $stmt->close();
-    $conn->close();
+
 } else {
     // If the form was not submitted, redirect or show an error
     echo "<script>
@@ -65,7 +63,13 @@ if (isset($_POST['Rate'])) {
             window.location.href = './recipeView.php?id={$recipeID}';
           </script>";
 }
+
+
+    // Close statement and connection
+    $stmt->close();
+    $conn->close();
 ?>
+
 
 </body>
 </html>
