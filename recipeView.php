@@ -43,7 +43,7 @@ if (isset($_GET['id'])) {
     }
 
 
-    $stmt->close(); 
+ 
 
 
 
@@ -133,7 +133,8 @@ echo "
         <p>{$instructions}</p>
 
   </div> 
-";?>
+";
+$stmt->close(); ?>
   <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Toggle bottom offcanvas</button>
 
 <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
@@ -143,7 +144,7 @@ echo "
   </div>
   <div class="offcanvas-body small">
 
-  <form action="rate.php" method="post" class="rating-form">
+  <form action="ratingLogic.php" method="post" class="rating-form">
     <div class="ratingsend">
         <div class="rate">
             <label for="rate" class="rate-label">Rate This Recipe</label>
@@ -156,6 +157,9 @@ echo "
                 <option value="5">5 - Awesome</option>
             </select>
         </div>
+
+        <!-- Hidden Recipe ID -->
+        <input type="hidden" name="recipeID" value="<?php echo $recipeId; ?>">
 
         <textarea id="comment" name="comment" placeholder="Leave a comment..." rows="4" class="comment-box"></textarea>
 
