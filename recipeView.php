@@ -94,7 +94,7 @@ echo "
    <h1 class='display-4'>{$dishName}</h1>
    <div class='recipe'>
    
-    <div class='container'>
+    <div class='container_image'>
         <div class='mainPicture'>
         
         <img class= 'imageDisplay' src='{$imageSrc}' alt='{$dishName}' class='img-fluid rounded mb-3'>

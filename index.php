@@ -37,15 +37,8 @@ echo $_SESSION['user_id'];
 
                       <a class="nav-link " aria-current="page" href="#">Home</a>
                     </li>
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" aria-expanded="false">Recipes</a>
-                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Breakfast</a></li>
-                        <li><a class="dropdown-item" href="#">Lunch</a></li>
-                        <li><a class="dropdown-item" href="#">Dinner</a></li>
-                        <li><a class="dropdown-item" href="#">Snacks</a></li>
-                        <li><a class="dropdown-item" href="#">Disert</a></li>
-                      </ul>
+                    <li class="nav-item">
+                      <a class="nav-link " href="recipe.php">Recipes</a>
                     </li>
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" aria-expanded="false">Cuisines</a>

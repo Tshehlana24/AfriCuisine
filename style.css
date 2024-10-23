@@ -242,7 +242,7 @@ main{
     margin-bottom: 4rem;
 }
 
- .container{
+ .container_image{
     display: flex;
     flex-direction: row;
 }
